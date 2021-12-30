@@ -6,7 +6,7 @@ const products = [
   { id: 4, title: 'Gamepad', price: 150 },
 ];
 
-const renderProduct = (id, title, price, imgUrl = 'loading.gif') => {
+const renderProduct = (id = 0, title = 'product', price = 0, imgUrl = 'loading.gif') => {
   return `<div class="product">
             <img width="30" src="${imgUrl}" alt="prod_photo" class="product__img">
             <span class="product__title">${title}
