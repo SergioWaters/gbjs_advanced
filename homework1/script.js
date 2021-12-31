@@ -21,6 +21,7 @@ const renderProduct = (id = 0, title = 'product', price = 0, imgUrl = 'loading.g
 
 const renderCatalog = (list) => {
 
+  // .map использует метод .toString, который разделяет элементы массива запятой. Для того чтобы убрать запятую, используем метод .join(), передавая в него пустую строку ''.
   const productList = list.map(good => renderProduct(good.id, good.title, good.price)).join('');
 
   document.querySelector('.cart__products').innerHTML = productList;
