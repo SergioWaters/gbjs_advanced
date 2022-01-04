@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>Burgers</title>
+</head>
+
+<body>
+
+  <form class='burger'>
+    <label for="big">big
+      <input class='burger__size' type="radio" name="burg_size" id="big" data-price='100' data-kcal="40"
+        data-size='small'></label>
+    <label for="small">small
+      <input class='burger__size' type="radio" name="burg_size" id="small" data-price='50' data-kcal="20"
+        data-size='big'></label>
+
+    <label for="cheese">cheese
+      <input class='burger__required' type="radio" name="burg_topping" id="cheese" data-price='10' data-kcal="20"
+        data-topping='cheese'></label>
+
+    <label for="salad">salad
+      <input class='burger__required' data-price='20' data-kcal="5" data-topping='salad' type="radio"
+        name="burg_topping" id="salad"></label>
+
+    <label for="potato">potato
+      <input class='burger__required' data-price='15' data-kcal="10" data-topping='potato' type="radio"
+        name="burg_topping" id="potato"></label>
+
+    <label for="spices">spices
+      <input class='burger__optional' data-price='15' data-kcal="0" data-topping='spices' type="checkbox"
+        name="burg_topping_optional" id="spices"></label>
+
+    <label for="mayonese">mayonese
+      <input class='burger__optional' type="checkbox" name="burg_topping_optional" id="mayonese" data-price='20'
+        data-kcal="5" data-topping='mayonese'></label>
+
+  </form>
+
+  <button class="burger__count">Count price and calories</button>
+
+  <ul class="burger__result"></ul>
+
+  <script src="./js/burger.js"></script>
+</body>
+
+</html>

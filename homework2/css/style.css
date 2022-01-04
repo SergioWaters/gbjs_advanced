@@ -12,7 +12,6 @@ button{
     outline: none;
 }
 .logo{
-
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -74,4 +73,22 @@ img {
     background-color: transparent;
     border-color: #2f2a2d;
     color: #2f2a2d;
+}
+
+
+.burger {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 10px;
+}
+.burger input{
+    box-sizing: border-box;
+    margin: 10px 10px 20px 10px;
+}
+.burger__size {
+}
+.burger__required {
+}
+.burger__optional {
 }
