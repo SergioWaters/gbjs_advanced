@@ -10,29 +10,28 @@
 
 class Hamburger {
 
-  constructor(size, topping, price, kcal, html, inputs) {
-    this.size = size;
+  constructor(inputs, size, topping, price, kcal, html) {
+    this.inputs = inputs;
     this.topping = topping;
     this.price = price;
     this.kcal = kcal;
     this.html = html;
-    this.inputs = inputs;
+    this.size = size;
   }
 
   getInputs() {
     this.inputs = document.querySelectorAll('input:checked');
   }
-
+  getSize() {              // Узнать размер гамбургера 
+    this.size = '';
+    this.size = document.querySelector('.burger__size:checked').dataset.size
+  }
   getToppings() {         // Получить список добавок 
     this.topping = [];
     this.inputs.forEach(input => {
-      this.topping.push(input.dataset.topping);
-    });
-  }
-  getSize() {              // Узнать размер гамбургера 
-    this.size = '';
-    this.inputs.forEach(input => {
-      this.size = input.dataset.size
+      if (input.dataset.topping != undefined) {
+        this.topping.push(input.dataset.topping);
+      }
     });
   }
   calculatePrice() {       // Узнать цену 
@@ -49,7 +48,15 @@ class Hamburger {
   }
   generateResultHtml() {
     this.html
-    this.html = `<li> ${this.size} burger</li> <li>with ${this.topping.join(', ')} </li>  <li>Price: ${this.price} </li> <li>Calories: ${this.kcal} </li>`;
+    this.html = `<ul class="burger__created"><li> ${this.size} burger</li> <li>with ${this.topping.join(', ')} </li>  <li>Price: ${this.price} </li> <li>Calories: ${this.kcal} </li></ul>`;
+  }
+  createNewBurger() {
+    this.getInputs();
+    this.calculateCalories();
+    this.calculatePrice();
+    this.getSize();
+    this.getToppings();
+    this.generateResultHtml();
   }
 
 }
@@ -57,15 +64,9 @@ class Hamburger {
 btnPriceKcal = document.querySelector('.burger__count');
 burgerResult = document.querySelector('.burger__result');
 
-const burger = new Hamburger;
 
 btnPriceKcal.addEventListener('click', function () {
-  burger.getInputs();
-  burger.calculateCalories();
-  burger.calculatePrice();
-  burger.getSize();
-  burger.getToppings();
-  burger.generateResultHtml();
-  burgerResult.innerHTML = '';
+  const burger = new Hamburger;
+  burger.createNewBurger();
   burgerResult.insertAdjacentHTML('afterbegin', burger.html)
 })

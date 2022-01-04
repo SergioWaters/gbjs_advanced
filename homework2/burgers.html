@@ -14,38 +14,38 @@
 <body>
 
   <form class='burger'>
-    <label for="big">big
+    <label for="big">
       <input class='burger__size' type="radio" name="burg_size" id="big" data-price='100' data-kcal="40"
-        data-size='small'></label>
-    <label for="small">small
+        data-size='big'>Big burger - 100/40</label>
+    <label for="small">
       <input class='burger__size' type="radio" name="burg_size" id="small" data-price='50' data-kcal="20"
-        data-size='big'></label>
+        data-size='small'>Small burger - 50/20</label>
 
-    <label for="cheese">cheese
+    <label for="cheese">
       <input class='burger__required' type="radio" name="burg_topping" id="cheese" data-price='10' data-kcal="20"
-        data-topping='cheese'></label>
+        data-topping='cheese'>Add cheese - 10/20</label>
 
-    <label for="salad">salad
+    <label for="salad">
       <input class='burger__required' data-price='20' data-kcal="5" data-topping='salad' type="radio"
-        name="burg_topping" id="salad"></label>
+        name="burg_topping" id="salad">Add salad - 20/5</label>
 
-    <label for="potato">potato
+    <label for="potato">
       <input class='burger__required' data-price='15' data-kcal="10" data-topping='potato' type="radio"
-        name="burg_topping" id="potato"></label>
+        name="burg_topping" id="potato">Add potato - 15/10</label>
 
-    <label for="spices">spices
+    <label for="spices">
       <input class='burger__optional' data-price='15' data-kcal="0" data-topping='spices' type="checkbox"
-        name="burg_topping_optional" id="spices"></label>
+        name="burg_topping_optional" id="spices">Add spices - 15/0</label>
 
-    <label for="mayonese">mayonese
+    <label for="mayonese">
       <input class='burger__optional' type="checkbox" name="burg_topping_optional" id="mayonese" data-price='20'
-        data-kcal="5" data-topping='mayonese'></label>
+        data-kcal="5" data-topping='mayonese'>Add mayonese - 20/5</label>
 
   </form>
 
   <button class="burger__count">Count price and calories</button>
 
-  <ul class="burger__result"></ul>
+  <div class="burger__result"></div>
 
   <script src="./js/burger.js"></script>
 </body>
