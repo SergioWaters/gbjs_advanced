@@ -4,6 +4,9 @@ const app = new Vue({
   el: '#app',
   data: {
     catalogUrl: '/catalogData.json',
+    cartUrl: '/getBasket.json',
+    addProductToBasket: '/addToBasket.json',
+    deleteProductFromBasket: '/deleteFromBasket.json',
     imgCatalog: 'https://via.placeholder.com/200x150',
     imgCart: 'https://via.placeholder.com/50x100',
     products: [],
@@ -23,7 +26,7 @@ const app = new Vue({
     addProduct(product) {
       console.log(product.id_product);
 
-      this.getJson(`${API}/addToBasket.json`)
+      this.getJson(`${API + this.addProductToBasket}`)
         .then(data => {
           if (data.result === 1) {
             let productId = product.id_product;
@@ -45,7 +48,7 @@ const app = new Vue({
         })
     },
     deleteProduct(product) {
-      this.getJson(`${API}/deleteFromBasket.json`)
+      this.getJson(`${API + this.deleteProductFromBasket}`)
         .then(data => {
           if (data.result === 1) {
             let productId = product.id_product;
@@ -78,6 +81,12 @@ const app = new Vue({
         for (let el of data) {
           this.products.push(el);
           this.filteredArr.push(el);
+        }
+      });
+    this.getJson(`${API + this.cartUrl}`)
+      .then(data => {
+        for (let el of data.contents) {
+          this.cartArr.push(el);
         }
       });
   },
