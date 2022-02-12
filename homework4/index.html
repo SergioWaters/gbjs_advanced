@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>HW4</title>
+</head>
+
+<body>
+  <section>
+    <h3>Оригинальный текст</h3>
+    <div class="original-text">
+      One: 'Hi Mary.' Two: 'Oh, hi.'<br>
+      One: 'How are you doing?'<br>
+      Two: 'I'm doing alright. How about you?'<br>
+      One: 'Not too bad. The weather is great isn't it?'<br>
+      Two: 'Yes. It's absolutely beautiful today.'<br>
+      One: 'I wish it was like this more frequently.'<br>
+      Two: 'Me too.'<br>
+      One: 'So where are you going now?'<br>
+      Two: 'I'm going to meet a friend of mine at the department store'<br>
+      One: 'Going to do a little shopping?'<br>
+      Two: 'Yeah, I have to buy some presents for my parents.'<br>
+      One: 'What's the occasion?'<br>
+      Two: 'It's their anniversary.'<br>
+      One: 'That's great. Well, you better get going. You don't want to be late.'<br>
+      Two: 'I'll see you next time.'<br>
+      One: 'Sure.' Bye.'<br>
+    </div>
+  </section>
+
+
+  <section>
+    <h3>Текст после применения регулярных выражений</h3>
+    <div class="reworked-text"></div>
+  </section>
+
+  <!-- // 3. *Создать форму обратной связи с полями: Имя, Телефон, E-mail, текст, кнопка Отправить. При нажатии на кнопку
+  Отправить произвести валидацию полей следующим образом:
+  // a. Имя содержит только буквы.
+  // b. Телефон имеет вид +7(000)000-0000.
+  // c. E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.
+  // d. Текст произвольный.
+  // e. Если одно из полей не прошло валидацию, необходимо выделить это поле красной рамкой и сообщить пользователю об
+  ошибке. -->
+
+
+  <section class="form-section">
+
+    <form action="#text" class="validation-form">
+      <h3 class="form__title">Форма отправки сообщения</h3>
+
+      <input data-error="error" placeholder="Введите ваше имя" type="text" class="form__input" id="name">
+      <label for="name" class="hidden">Введите имя, состоящее только из букв</label>
+
+      <input data-error="error" placeholder="Номер вашего телефона" type="tel" class="form__input" id="tel">
+      <label for="tel" class="hidden">Телефон должен иметь вид +7(000)000-0000</label>
+
+      <input data-error="error" placeholder="Адрес вашей электронной почты" type="email" class="form__input" id="email">
+      <label for="email" class="hidden">E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или
+        my-mail@mail.ru</label>
+
+      <textarea placeholder="Ваше собщение" type="text" class="form__input form__input_text" id="text"></textarea>
+      <button class="form__button" type="submit">Отправить</button>
+
+    </form>
+
+
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
