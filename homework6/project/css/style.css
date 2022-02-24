@@ -33,12 +33,6 @@ button:focus{
 .btn-cart, .logo{
     align-self: center;
 }
-/*.products {*/
-/*display: flex;*/
-/*justify-content: space-between;*/
-/*flex-wrap: wrap;*/
-/*padding: 40px 80px;*/
-/*}*/
 .products{
     column-gap: 30px;
     display: grid;
@@ -68,6 +62,7 @@ img {
 }
 .cart{
     position: relative;
+    display: flex;
 }
 .cart-block{
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);
@@ -81,7 +76,6 @@ img {
     color: black;
     width: 300px;
 }
-
 .invisible{
     display: none;
 }
@@ -96,7 +90,6 @@ img {
     border-right: 10px solid transparent;
     border-bottom: 10px solid white;
 }
-
 .buy-btn, .del-btn{
     margin-top: 5px;
     background-color: #2f2a2d;
@@ -168,4 +161,13 @@ img {
     background-color: transparent;
     border: none;
     border-bottom: 2px solid #fafafa;
+}
+.empty-msg{
+    text-align: center;
+}
+.error{
+    margin: 100px;
+    padding: 100px;
+    box-sizing: border-box;
+    width: 100vw;    
 }
