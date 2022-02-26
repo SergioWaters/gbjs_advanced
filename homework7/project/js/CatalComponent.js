@@ -1,14 +1,14 @@
 Vue.component('catalog', {
   data() {
     return {
-      catalogUrl: '/catalogData.json',
+      catalogUrl: '/api/catalog',
       addProductToBasket: '/addToBasket.json',
       imgCatalog: 'https://via.placeholder.com/200x150',
       products: [],
     }
   },
   mounted() {
-    this.$parent.getJson(`${API + this.catalogUrl}`)
+    this.$parent.getJson('/api/catalog')
       .then(data => {
         for (let el of data) {
           this.products.push(el);

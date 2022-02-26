@@ -8,5 +8,35 @@
     "id_product": 456,
     "product_name": "Мышка",
     "price": 1000
+  },
+  {
+    "id_product": 789,
+    "product_name": "Клавиатура",
+    "price": 1500
+  },
+  {
+    "id_product": 1011,
+    "product_name": "Монитор",
+    "price": 10000
+  },
+  {
+    "id_product": 1213,
+    "product_name": "Веб-камера",
+    "price": 3000
+  },
+  {
+    "id_product": 1415,
+    "product_name": "Колонки",
+    "price": 1100
+  },
+  {
+    "id_product": 1617,
+    "product_name": "Коврик для мыши",
+    "price": 1000
+  },
+  {
+    "id_product": 1819,
+    "product_name": "Флешка",
+    "price": 300
   }
 ]
