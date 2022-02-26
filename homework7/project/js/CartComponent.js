@@ -12,7 +12,7 @@ Vue.component('cart', {
             let productId = product.id_product;
             let find = this.cartArr.find(product => product.id_product === productId);
             let findIndex = this.cartArr.findIndex(product => product.id_product === productId);
-            if (+find.quantity <= 0) {
+            if (+find.quantity == 1) {
                 this.$parent.deleteJson(`${this.cartUrl}/${productId}`, product)
                     .then(data => {
                         if (data.result === 1) {
@@ -34,50 +34,30 @@ Vue.component('cart', {
             }
         },
         addProduct(product) {
-            this.$parent.getJson(this.cartUrl)
-                .then(data => {
-                    if (data.result === 1) {
-                        let productId = product.id_product;
-                        let find = this.cartArr.find(product => product.id_product === productId);
-                        if (find) {
+            let productId = product.id_product;
+            let find = this.cartArr.find(product => product.id_product === productId);
+            let findIndex = this.cartArr.findIndex(product => product.id_product === productId);
+            if (find) {
+                this.$parent.putJson(`${this.cartUrl}/${productId}`, { quantity: 1 })
+                    .then(data => {
+                        if (data.result === 1) {
                             find.quantity++;
                         } else {
-                            let cartProduct = {
-                                id_product: product.id_product,
-                                price: product.price,
-                                product_name: product.product_name,
-                                quantity: 1
-                            };
-                            this.cartArr.push(cartProduct);
+                            alert('Error');
                         }
-                    } else {
-                        alert('Error');
-                    }
-                })
-        },
-        removeProduct(product) {
-            this.$parent.getJson(`${this.addProductToBasket}`)
-                .then(data => {
-                    if (data.result === 1) {
-                        let productId = product.id_product;
-                        let find = this.cartArr.find(product => product.id_product === productId);
-                        if (find) {
-                            find.quantity++;
+                    })
+            } else {
+                let prodAdd = Object.assign({ quantity: 1 }, product);
+                this.$parent.postJson(this.cartUrl, prodAdd)
+                    .then(data => {
+                        if (data.result === 1) {
+                            this.cartArr.push(prodAdd)
                         } else {
-                            let cartProduct = {
-                                id_product: product.id_product,
-                                price: product.price,
-                                product_name: product.product_name,
-                                quantity: -1
-                            };
-                            this.cartArr.push(cartProduct);
+                            alert('Error');
                         }
-                    } else {
-                        alert('Error');
-                    }
-                })
+                    })
+            }
         },
-
     },
     mounted() {
         this.$parent.getJson(`${this.cartUrl}`)
