@@ -12,8 +12,8 @@ Vue.component('cart', {
             let productId = product.id_product;
             let find = this.cartArr.find(product => product.id_product === productId);
             let findIndex = this.cartArr.findIndex(product => product.id_product === productId);
-            if (+find.quantity == 1) {
-                this.$parent.deleteJson(`${this.cartUrl}/${productId}`, product)
+            if (+find.quantity == 1) { // если товар уже есть в корзине и его количество равно 1, удаляем товар полностью
+                this.$parent.deleteJson(`${this.cartUrl}/${productId}/delete`, product)
                     .then(data => {
                         if (data.result === 1) {
                             this.cartArr.splice(findIndex, 1);
@@ -21,9 +21,9 @@ Vue.component('cart', {
                             alert('Error');
                         }
                     })
-            } else {
+            } else { // если товар уже есть в корзине и его количество больше 1, уменьшаем его количество
                 let prodRemove = Object.assign({ quantity: -1 }, product);
-                this.$parent.putJson(`${this.cartUrl}/${productId}`, prodRemove)
+                this.$parent.putJson(`${this.cartUrl}/${productId}/remove`, prodRemove)
                     .then(data => {
                         if (data.result === 1) {
                             find.quantity--;
@@ -38,7 +38,7 @@ Vue.component('cart', {
             let find = this.cartArr.find(product => product.id_product === productId);
             let findIndex = this.cartArr.findIndex(product => product.id_product === productId);
             if (find) {
-                this.$parent.putJson(`${this.cartUrl}/${productId}`, { quantity: 1 })
+                this.$parent.putJson(`${this.cartUrl}/${productId}/increase`, { quantity: 1 })
                     .then(data => {
                         if (data.result === 1) {
                             find.quantity++;
@@ -48,7 +48,7 @@ Vue.component('cart', {
                     })
             } else {
                 let prodAdd = Object.assign({ quantity: 1 }, product);
-                this.$parent.postJson(this.cartUrl, prodAdd)
+                this.$parent.postJson(`${this.cartUrl}/add`, prodAdd)
                     .then(data => {
                         if (data.result === 1) {
                             this.cartArr.push(prodAdd)

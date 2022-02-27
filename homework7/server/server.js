@@ -34,7 +34,7 @@ app.get('/api/cart', (request, response) => {
 /**
  * метод пушит объект в cart.json на сервере
  */
-app.post('/api/cart', (request, response) => {
+app.post('/api/cart/:act', (request, response) => {
   fs.readFile('./server/db/cart.json', 'utf-8', (err, data) => {
     if (err) {
       response.sendStatus(404, JSON.stringify({ result: 0, text: err }));
@@ -46,6 +46,11 @@ app.post('/api/cart', (request, response) => {
           response.send('{"result": 0}');
         } else {
           response.send('{"result": 1}');
+          fs.readFile('./server/db/stats.json', 'utf-8', (err, data) => {
+            const stats = JSON.parse(data);
+            stats.statsLog.push({ product: request.params.id, date: new Date, action: request.params.act });
+            fs.writeFile('./server/db/stats.json', JSON.stringify(stats), (err) => { console.log(err) })
+          })
         }
       })
     }
@@ -55,7 +60,7 @@ app.post('/api/cart', (request, response) => {
 /**
  * метод проверяет есть ли объект в cart.json и если есть, то увеличивает его quantity
  */
-app.put('/api/cart/:id', (request, response) => {
+app.put('/api/cart/:id/:act', (request, response) => {
   fs.readFile('./server/db/cart.json', 'utf-8', (err, data) => {
     if (err) {
       response.sendStatus(404, JSON.stringify({ result: 0, text: err }));
@@ -68,25 +73,35 @@ app.put('/api/cart/:id', (request, response) => {
           response.send('{"result": 0}');
         } else {
           response.send('{"result": 1}');
+          fs.readFile('./server/db/stats.json', 'utf-8', (err, data) => {
+            const stats = JSON.parse(data);
+            stats.statsLog.push({ product: request.params.id, date: new Date, action: request.params.act });
+            fs.writeFile('./server/db/stats.json', JSON.stringify(stats), (err) => { console.log(err) })
+          })
         }
       })
     }
   });
 });
 
-app.delete('/api/cart/:id', (request, response) => {
+app.delete('/api/cart/:id/:act', (request, response) => {
   fs.readFile('./server/db/cart.json', 'utf-8', (err, data) => {
     if (err) {
       response.sendStatus(404, JSON.stringify({ result: 0, text: err }));
     } else {
       const cart = JSON.parse(data);
       const find = cart.contents.find(el => el.id_product === +request.params.id);
-      cart.contents.splice(cart.contents.indexOf(find)) //.quantity += request.body.quantity;
+      cart.contents.splice(cart.contents.indexOf(find))
       fs.writeFile('./server/db/cart.json', JSON.stringify(cart), (err) => {
         if (err) {
           response.send('{"result": 0}');
         } else {
           response.send('{"result": 1}');
+          fs.readFile('./server/db/stats.json', 'utf-8', (err, data) => {
+            const stats = JSON.parse(data);
+            stats.statsLog.push({ product: request.params.id, date: new Date, action: request.params.act });
+            fs.writeFile('./server/db/stats.json', JSON.stringify(stats), (err) => { console.log(err) })
+          })
         }
       })
     }
